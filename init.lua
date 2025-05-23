@@ -1014,3 +1014,14 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+-- -- 42 Header manual setup
+vim.schedule(function()
+  vim.g.user42 = 'advorace'
+  vim.g.mail42 = 'advorace@student.42prague.com'
+
+  local header_script = vim.fn.stdpath 'config' .. '/lua/custom/42header/plugin/stdheader.vim'
+  if vim.fn.filereadable(header_script) == 1 then
+    vim.cmd('source ' .. header_script)
+    vim.keymap.set('n', '<leader>sh', ':Stdheader<CR>', { desc = 'Insert 42 Header' })
+  end
+end)
